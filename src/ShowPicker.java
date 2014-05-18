@@ -49,6 +49,15 @@ public class ShowPicker extends HttpServlet {
 	        robot.keyPress(KeyEvent.VK_WINDOWS);
 	        robot.keyPress(KeyEvent.VK_P);
 	        
+	        
+	        robot.keyPress(KeyEvent.VK_WINDOWS);
+	        robot.keyPress(KeyEvent.VK_P);
+	        
+	        robot.keyPress(KeyEvent.VK_WINDOWS);
+	        robot.keyPress(KeyEvent.VK_P);
+	        
+	        Thread.sleep(4000);
+	        
 			
 			
 			doc = Jsoup.connect("http://www.desi-tashan.com/").userAgent("Chrome").get();
@@ -105,7 +114,7 @@ public class ShowPicker extends HttpServlet {
 				}
 			}
 	 
-		} catch (IOException | AWTException e) {
+		} catch (IOException | AWTException | InterruptedException e) {
 			e.printStackTrace();
 		}
 		System.out.println("redirect didn't ");
