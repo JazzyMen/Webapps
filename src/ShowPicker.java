@@ -29,8 +29,7 @@ public class ShowPicker extends HttpServlet {
      * @see HttpServlet#HttpServlet()
      */
     public ShowPicker() {
-        super();
-        // TODO Auto-generated constructor stub
+        super(); 
     }
 
 	/**
@@ -40,35 +39,18 @@ public class ShowPicker extends HttpServlet {
 		// TODO Auto-generated method stub
 		System.out.println("I'min the doGet method!!");
 		
+		String show = request.getParameter("video");
+		
 		Document doc;
 		try {
 			
-			Robot robot = new Robot();
-
-	        // Simulate a key press
-	        robot.keyPress(KeyEvent.VK_WINDOWS);
-	        robot.keyPress(KeyEvent.VK_P);
-	        
-	        
-	        robot.keyPress(KeyEvent.VK_WINDOWS);
-	        robot.keyPress(KeyEvent.VK_P);
-	        
-	        robot.keyPress(KeyEvent.VK_WINDOWS);
-	        robot.keyPress(KeyEvent.VK_P);
-	        
-	        Thread.sleep(4000);
-	        
-			
-			
 			doc = Jsoup.connect("http://www.desi-tashan.com/").userAgent("Chrome").get();
-			
-			System.out.println("When you let them go");
 			
 			// get all links
 			Elements links = doc.select("a[href]");
 			for (Element link : links) {
 		
-				if(link.attr("href").contains("veera")){
+				if(link.attr("href").contains(show)){
 					
 					System.out.println("Inside the if statement.");
 					System.out.println("\nlink : " + link.attr("href"));
@@ -114,23 +96,13 @@ public class ShowPicker extends HttpServlet {
 				}
 			}
 	 
-		} catch (IOException | AWTException | InterruptedException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println("redirect didn't ");
-		response.sendRedirect("index.html?test");
-		System.out.println("redirect didn't work?");
-		//request.getRequestDispatcher("/ShowPicker").forward(request, response);
+
+		response.sendRedirect("index.html?test");		
 	}
 
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		System.out.println("I'm in the doPost method!!");
-	}
 	
 	private String getDailyMotionVideoIds(int maxIndex, ArrayList<String> DLinks) throws IOException{
 		int count = 0; 
